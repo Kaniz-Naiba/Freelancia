@@ -7,7 +7,7 @@ const BrowseTasks = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/tasks")
+    fetch("https://freelance-marketplace-server-gamma.vercel.app/api/tasks")
       .then(res => res.json())
       .then(data => setTasks(data))
       .catch(err => console.error("Error loading tasks:", err));

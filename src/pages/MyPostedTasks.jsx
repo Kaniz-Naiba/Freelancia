@@ -15,7 +15,7 @@ const MyPostedTasks = () => {
       if (!user?.email) return;
 
       try {
-        const res = await fetch(`http://localhost:4000/api/tasks?email=${user.email}`, {
+        const res = await fetch(`https://freelance-marketplace-server-gamma.vercel.app/api/tasks?email=${user.email}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -49,7 +49,7 @@ const MyPostedTasks = () => {
   if (!result.isConfirmed) return;
 
   try {
-    const res = await fetch(`http://localhost:4000/api/tasks/${taskId}`, {
+    const res = await fetch(`https://freelance-marketplace-server-gamma.vercel.app/api/tasks/${taskId}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });

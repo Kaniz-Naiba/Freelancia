@@ -59,7 +59,7 @@ const UpdateTask = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:4000/api/tasks/${id}`, {
+    fetch(`https://freelance-marketplace-server-gamma.vercel.app/api/tasks/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

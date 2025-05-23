@@ -46,7 +46,7 @@ const Home = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const res = await fetch("http://localhost:4000/api/tasks");
+        const res = await fetch("https://freelance-marketplace-server-gamma.vercel.app/api/tasks");
         const data = await res.json();
         setTasks(data);
       } catch (error) {

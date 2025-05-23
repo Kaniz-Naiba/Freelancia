@@ -26,7 +26,7 @@ const AddTask = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:4000/api/tasks", {
+      const res = await fetch("https://freelance-marketplace-server-gamma.vercel.app/api/tasks", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

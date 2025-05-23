@@ -10,7 +10,7 @@ const TaskDetails = () => {
   useEffect(() => {
     const fetchTask = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/api/tasks/${id}`);
+        const res = await fetch(`https://freelance-marketplace-server-gamma.vercel.app/api/tasks/${id}`);
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || "Task not found");
         setTask(data);
