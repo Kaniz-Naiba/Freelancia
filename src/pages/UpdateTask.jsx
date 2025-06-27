@@ -13,6 +13,7 @@ const UpdateTask = () => {
   const [taskData, setTaskData] = useState({
     title: "",
     category: "",
+    image:"",
     budget: "",
     deadline: "",
     description: "",
@@ -24,7 +25,7 @@ const UpdateTask = () => {
   useEffect(() => {
     if (!id || !token) return;
 
-    fetch(`/api/tasks/${id}`, {
+    fetch(`https://freelance-marketplace-server-gamma.vercel.app/api/tasks/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -37,6 +38,7 @@ const UpdateTask = () => {
         setTaskData({
           title: data.title || "",
           category: data.category || "",
+           image: data.image || "",
           budget: data.budget || "",
           deadline: data.deadline || "",
           description: data.description || "",
@@ -87,6 +89,7 @@ const UpdateTask = () => {
   }
 
   return (
+     <div className="min-h-screen  bg-gradient-to-br from-purple-200 via-blue-100 to-pink-200 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300 px-4">
     <div className="max-w-3xl mx-auto p-4">
       <h2 className="text-2xl font-bold mb-4 text-center">Update Task</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -117,7 +120,7 @@ const UpdateTask = () => {
             value={taskData.title}
             onChange={handleChange}
             required
-            className="w-full border px-3 py-2 rounded"
+            className="w-full border px-3 py-2 rounded bg-blue-950"
           />
         </div>
         <div>
@@ -128,9 +131,28 @@ const UpdateTask = () => {
             value={taskData.category}
             onChange={handleChange}
             required
-            className="w-full border px-3 py-2 rounded"
+            className="w-full border px-3 py-2 rounded  bg-blue-950"
           />
         </div>
+        
+<div>
+  <label className="block font-semibold">Image URL</label>
+  <input
+    type="text"
+    name="image"
+    value={taskData.image}
+    onChange={handleChange}
+    className="w-full border px-3 py-2 rounded  bg-blue-950"
+  />
+  {taskData.image && (
+    <img
+      src={taskData.image}
+      alt="Preview"
+      className="mt-2 h-40 w-full object-cover rounded border bg-blue-950"
+    />
+  )}
+</div>
+
         <div>
           <label className="block font-semibold">Budget</label>
           <input
@@ -140,7 +162,7 @@ const UpdateTask = () => {
             onChange={handleChange}
             required
             min="0"
-            className="w-full border px-3 py-2 rounded"
+            className="w-full border px-3 py-2 rounded  bg-blue-950"
           />
         </div>
         <div>
@@ -151,7 +173,7 @@ const UpdateTask = () => {
             value={taskData.deadline}
             onChange={handleChange}
             required
-            className="w-full border px-3 py-2 rounded"
+            className="w-full border px-3 py-2 rounded  bg-blue-950"
           />
         </div>
         <div>
@@ -161,7 +183,7 @@ const UpdateTask = () => {
             value={taskData.description}
             onChange={handleChange}
             rows="4"
-            className="w-full border px-3 py-2 rounded"
+            className="w-full border px-3 py-2 rounded  bg-blue-950"
           />
         </div>
         <button
@@ -172,6 +194,7 @@ const UpdateTask = () => {
         </button>
       </form>
     </div>
+    </div> 
   );
 };
 

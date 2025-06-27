@@ -10,6 +10,7 @@ const AddTask = () => {
     description: "",
     deadline: "",
     budget: "",
+    image:"",
   });
 
   const handleChange = (e) => {
@@ -47,6 +48,7 @@ const AddTask = () => {
         description: "",
         deadline: "",
         budget: "",
+        image:"",
       });
     } catch (error) {
       toast.error("Failed to add task.");
@@ -67,6 +69,14 @@ const AddTask = () => {
           onChange={handleChange}
           required
         />
+         <input
+  type="text"
+  name="image"
+  value={formData.image}
+  placeholder="Image URL"
+  className="w-full p-2 border rounded bg-blue-950"
+  onChange={handleChange}
+/>
         <select
           name="category"
           value={formData.category}

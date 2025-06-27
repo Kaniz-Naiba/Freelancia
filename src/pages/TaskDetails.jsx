@@ -37,11 +37,20 @@ const TaskDetails = () => {
       </p>
 
       <h1 className="text-2xl font-bold mb-4">{task.title}</h1>
+        {/* Image display */}
+        {task.image && (
+          <img
+            src={task.image}
+            alt={task.title}
+            className="w-full max-h-80 object-contain mb-4 rounded"
+          />
+        )}
       <p><strong>Category:</strong> {task.category}</p>
       <p><strong>Description:</strong> {task.description}</p>
       <p><strong>Budget:</strong> ${task.budget}</p>
       <p><strong>Deadline:</strong> {task.deadline}</p>
       <p><strong>Posted By:</strong> {task.name} </p>
+      
 
       <button
         onClick={handleBidsClick}

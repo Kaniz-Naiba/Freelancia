@@ -35,7 +35,7 @@ const DashboardLayout = () => {
               isActive ? "text-green-400 font-bold" : "hover:text-green-300"
             }
           >
-            📁 All Items
+            📁 Browse Tasks
           </NavLink>
 
           <NavLink
@@ -44,7 +44,7 @@ const DashboardLayout = () => {
               isActive ? "text-green-400 font-bold" : "hover:text-green-300"
             }
           >
-            ➕ Add Item
+            ➕ Add Task
           </NavLink>
 
           <NavLink
@@ -53,7 +53,7 @@ const DashboardLayout = () => {
               isActive ? "text-green-400 font-bold" : "hover:text-green-300"
             }
           >
-            📌 My Items
+            📌 My Posted TAsks
           </NavLink>
         </nav>
       </aside>

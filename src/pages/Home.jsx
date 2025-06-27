@@ -127,6 +127,13 @@ const Home = () => {
                 key={task._id}
                 className="bg-blue-200 dark:bg-gray-800 shadow-md rounded-lg p-4 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition"
               >
+                  {task.image && (
+      <img
+        src={task.image}
+        alt={task.title}
+        className="w-full h-40 object-cover rounded mb-3"
+      />
+    )}
                 <h3 className="text-lg font-semibold text-black dark:text-white mb-2">
                   {task.title}
                 </h3>

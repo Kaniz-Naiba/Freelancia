@@ -87,6 +87,13 @@ const BrowseTasks = () => {
               key={task._id}
               className="bg-white dark:bg-gray-800 border p-4 rounded shadow hover:shadow-lg transition"
             >
+                {task.image && (
+      <img
+        src={task.image}
+        alt={task.title}
+        className="w-full h-40 object-cover rounded mb-3"
+      />
+    )}
               <h3 className="text-xl font-semibold text-purple-600 dark:text-purple-300">{task.title}</h3>
               <p className="text-gray-700 dark:text-gray-300">Category: {task.category}</p>
               <p className="text-gray-700 dark:text-gray-300">Budget: ${task.budget}</p>
