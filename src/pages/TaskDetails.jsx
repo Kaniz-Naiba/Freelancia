@@ -30,6 +30,7 @@ const TaskDetails = () => {
   if (!task) return <p className="text-center mt-10">Loading task details...</p>;
 
   return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-200 via-blue-100 to-pink-200 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300 px-4">
     <div className="max-w-4xl mx-auto p-6 border rounded bg-purple-800 shadow mt-8">
       <p className="mb-4 text-white font-semibold text-lg">
         You bid for {bidsCount} {bidsCount === 1 ? "opportunity" : "opportunities"}.
@@ -40,7 +41,7 @@ const TaskDetails = () => {
       <p><strong>Description:</strong> {task.description}</p>
       <p><strong>Budget:</strong> ${task.budget}</p>
       <p><strong>Deadline:</strong> {task.deadline}</p>
-      <p><strong>Posted By:</strong> {task.userName} ({task.userEmail})</p>
+      <p><strong>Posted By:</strong> {task.name} </p>
 
       <button
         onClick={handleBidsClick}
@@ -48,6 +49,7 @@ const TaskDetails = () => {
       >
         Bids
       </button>
+    </div>
     </div>
   );
 };

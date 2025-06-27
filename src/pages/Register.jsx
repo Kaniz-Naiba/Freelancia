@@ -52,6 +52,8 @@ const Register = () => {
   };
 
   return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-200 via-blue-100 to-pink-200 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300 px-4">
+    
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded shadow">
       <h2 className="text-xl font-semibold mb-4 text-green-400">Register</h2>
       <form onSubmit={handleSubmit} autoComplete="off" className="space-y-3">
@@ -125,6 +127,7 @@ const Register = () => {
           Login here
         </Link>
       </p>
+    </div>
     </div>
   );
 };

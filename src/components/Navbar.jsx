@@ -2,17 +2,19 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
+import { FiMenu } from "react-icons/fi";
+import { IoClose } from "react-icons/io5";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
-
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("theme") === "dark";
   });
 
   useEffect(() => {
-    const root = window.document.documentElement;
+    const root = document.documentElement;
     if (darkMode) {
       root.classList.add("dark");
       localStorage.setItem("theme", "dark");
@@ -31,36 +33,78 @@ const Navbar = () => {
       toast.error("Logout failed");
     }
   };
- 
 
   const navLinks = (
     <>
       <NavLink to="/" className="hover:text-green-600 dark:text-white">Home</NavLink>
-      <NavLink to="/add-task" className="hover:text-green-600 dark:text-white">Add Task</NavLink>
       <NavLink to="/browse-tasks" className="hover:text-green-600 dark:text-white">Browse Tasks</NavLink>
-      <NavLink to="/my-posted-tasks" className="hover:text-green-600 dark:text-white">My Posted Tasks</NavLink>
+      
+      {user && (
+        <>
+          <NavLink to="/add-task" className="hover:text-green-600 dark:text-white">Add Task</NavLink>
+          <NavLink to="/my-posted-tasks" className="hover:text-green-600 dark:text-white">My Posted Tasks</NavLink>
+        </>
+      )}
+
+      <NavLink to="/about" className="hover:text-green-600 dark:text-white">About Us</NavLink>
     </>
+  );
+
+  const dashboardSidebar = (
+    <div
+      className="fixed inset-y-0 left-0 w-64 bg-gray-800 text-white p-5 shadow-lg z-50 transform transition-transform duration-300 ease-in-out"
+      style={{ transform: isDrawerOpen ? "translateX(0)" : "translateX(-100%)" }}
+    >
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-xl font-bold">Dashboard</h2>
+        <button onClick={() => setIsDrawerOpen(false)}>
+          <IoClose size={24} />
+        </button>
+      </div>
+      <nav className="flex flex-col gap-4 text-lg">
+        <NavLink to="/dashboard" onClick={() => setIsDrawerOpen(false)}>📊 Overview</NavLink>
+        <NavLink to="/dashboard/browse-tasks" onClick={() => setIsDrawerOpen(false)}>📁 Browse Tasks</NavLink>
+        <NavLink to="/dashboard/add-task" onClick={() => setIsDrawerOpen(false)}>➕ Add Task</NavLink>
+        <NavLink to="/dashboard/my-posted-tasks" onClick={() => setIsDrawerOpen(false)}>📌 My Posted Tasks</NavLink>
+        <Link to="/" onClick={() => setIsDrawerOpen(false)}>⬅ Back to Home</Link>
+      </nav>
+    </div>
   );
 
   return (
     <div className="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50 transition-colors">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        {/* Logo */}
-        <Link
-          to="/"
-          className="text-2xl font-bold bg-gradient-to-r text-blue-400 bg-clip-textt"
-        >
-        Freelancia
-        </Link>
+      {user && dashboardSidebar}
 
-        {/* Nav Links */}
+      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+        {/* Left Side: Menu + Logo */}
+        <div className="flex items-center space-x-4">
+          {user && (
+            <button
+              onClick={() => setIsDrawerOpen(true)}
+              className="text-2xl text-gray-700 dark:text-white focus:outline-none"
+            >
+              <FiMenu />
+            </button>
+          )}
+          <Link to="/" className="flex items-center space-x-2">
+            <img
+              src="/Freelancia Logo with Pen Icon.png"
+              alt="Freelancia Logo"
+              className="w-10 h-10 object-contain"
+            />
+            <span className="text-2xl font-bold text-blue-600 dark:text-white">
+              Freelancia
+            </span>
+          </Link>
+        </div>
+
+        {/* Center Nav */}
         <div className="space-x-6 font-medium hidden md:flex text-gray-700 dark:text-white">
           {navLinks}
         </div>
 
         {/* Right Side: Theme + Auth */}
         <div className="flex items-center space-x-4">
-          {/* Theme Toggle Button */}
           <button
             onClick={() => setDarkMode(!darkMode)}
             className="text-sm px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-black dark:text-white"
@@ -68,16 +112,12 @@ const Navbar = () => {
             {darkMode ? "☀ Light" : "🌙 Dark"}
           </button>
 
-          {/* Auth Buttons / Profile */}
           {!user ? (
             <>
               <Link to="/login" className="text-green-600 font-semibold hover:underline dark:text-green-400">
                 Login
               </Link>
-              <Link
-                to="/signup"
-                className="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700"
-              >
+              <Link to="/signup" className="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700">
                 Signup
               </Link>
             </>

@@ -31,59 +31,58 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded shadow">
-      <h2 className="text-xl font-semibold mb-4 text-green-500">Login</h2>
-      <form onSubmit={handleSubmit} autoComplete="off" className="space-y-3">
-        {/* Dummy fields to prevent autofill */}
-        <input type="text" name="fakeusernameremembered" className="hidden" />
-        <input type="password" name="fakepasswordremembered" className="hidden" />
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-200 via-blue-100 to-pink-200 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300 px-4">
+      <div className="w-full max-w-md p-6 bg-white dark:bg-gray-900 rounded-lg shadow-xl border dark:border-gray-700">
+        <h2 className="text-xl font-semibold mb-4 text-green-500 text-center">Login</h2>
 
-        <input
-          type="email"
-          name="login-email"
-          placeholder="Email"
-          autoComplete="new-email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-2 border text-black"
-        />
+        <form onSubmit={handleSubmit} autoComplete="off" className="space-y-3">
+          <input type="text" name="fakeusernameremembered" className="hidden" />
+          <input type="password" name="fakepasswordremembered" className="hidden" />
 
-        <input
-          type="password"
-          name="login-password"
-          placeholder="Password"
-          autoComplete="new-password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-2 border  text-black"
-        />
+          <input
+            type="email"
+            placeholder="Email"
+            autoComplete="new-email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-2 border rounded text-black dark:text-white dark:bg-gray-800"
+          />
 
-        <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded">
-          Login
+          <input
+            type="password"
+            placeholder="Password"
+            autoComplete="new-password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-2 border rounded text-black dark:text-white dark:bg-gray-800"
+          />
+
+          <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+            Login
+          </button>
+        </form>
+
+        <button
+          onClick={handleGoogleLogin}
+          className="w-full mt-4 flex items-center justify-center gap-2 border border-gray-300 rounded shadow-sm py-2 px-4 bg-white hover:bg-gray-100 transition text-gray-700"
+        >
+          <img
+            src="https://i.ibb.co/v4MVCrXD/Google-Icons-09-512.webp"
+            alt="Google logo"
+            className="w-5 h-5"
+          />
+          <span className="text-sm font-medium">Sign in with Google</span>
         </button>
-      </form>
 
-     <button
-  onClick={handleGoogleLogin}
-  className="w-full mt-4 flex items-center justify-center gap-2 border border-gray-300 rounded shadow-sm py-2 px-4 bg-white hover:bg-gray-100 transition text-gray-700"
->
-  <img
-    src="https://i.ibb.co/v4MVCrXD/Google-Icons-09-512.webp"
-    alt="Google logo"
-    className="w-5 h-5"
-  />
-  <span className="text-sm font-medium">Sign in with Google</span>
-</button>
-
-
-      <p className="mt-4 text-center text-sm">
-        Don't have an account?{" "}
-        <Link to="/signup" className="text-blue-600  hover:underline">
-          Register here
-        </Link>
-      </p>
+        <p className="mt-4 text-center text-sm text-gray-700 dark:text-gray-300">
+          Don't have an account?{" "}
+          <Link to="/signup" className="text-blue-600 hover:underline dark:text-blue-400">
+            Register here
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };

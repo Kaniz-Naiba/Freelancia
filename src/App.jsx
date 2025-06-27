@@ -10,6 +10,8 @@ import MyPostedTasks from "./pages/MyPostedTasks";
 import TaskDetails from "./pages/TaskDetails"; 
 import PrivateRoute from "./routes/PrivateRoute";
 import UpdateTask from "./pages/UpdateTask";
+import DashboardLayout from "./pages/Dashboard/DashboardLayout";
+import Overview from "./pages/Dashboard/Overview";
 import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -34,9 +36,9 @@ const router = createBrowserRouter([
       {
         path: "/browse-tasks",
         element: (
-          <PrivateRoute>
+         
             <BrowseTasks />
-          </PrivateRoute>
+         
         ),
       },
       {
@@ -59,13 +61,27 @@ const router = createBrowserRouter([
       {
         path: "/task-details/:id",
         element: (
-          <PrivateRoute>
+          
             <TaskDetails />
-          </PrivateRoute>
+          
         ),
       },
     ],
   },
+  {
+  path: "/dashboard",
+  element: (
+    <PrivateRoute>
+      <DashboardLayout />
+    </PrivateRoute>
+  ),
+  children: [
+    { index: true, element: <Overview /> }, // default route
+    { path: "browse-tasks", element: < BrowseTasks/> },
+    { path: "add-task", element: <AddTask /> },
+    { path: "my-posted-tasks", element: <MyPostedTasks /> },
+  ],
+},
 ]);
 
 function App() {

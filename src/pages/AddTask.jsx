@@ -54,6 +54,7 @@ const AddTask = () => {
   };
 
   return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-200 via-blue-100 to-pink-200 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300 px-4">
     <div className="max-w-xl mx-auto my-10">
       <h2 className="text-2xl font-bold mb-4">Add a New Task</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -125,6 +126,7 @@ const AddTask = () => {
           Add Task
         </button>
       </form>
+    </div>
     </div>
   );
 };
